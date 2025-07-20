@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 export function ParallaxBackground() {
@@ -82,13 +82,24 @@ function FloatingDots() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -500])
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.1, 0.3])
 
-  const dots = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: Math.random() * 4 + 2,
-    delay: Math.random() * 2,
-  }))
+  // Fix hydration error: only generate dots on client
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const dots = useMemo(() => {
+    return Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      delay: Math.random() * 2,
+    }))
+  }, [])
+
+  if (!mounted) return null // Avoid mismatch during SSR
 
   return (
     <motion.div className="absolute inset-0" style={{ y, opacity }}>

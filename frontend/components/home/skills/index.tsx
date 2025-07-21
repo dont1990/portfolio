@@ -67,8 +67,8 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="py-20  bg-muted/30" ref={ref}>
-      <div className="mx-auto">
+    <section id="skills" className="py-20 bg-muted/30" ref={ref}>
+      <div className="section-container">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { ParallaxHero } from "@/components/parallax-hero";
-import Typewriter from "../type-writer";
+import Typewriter from "../../type-writer";
 
 export function Hero() {
   const scrollToAbout = () => {
@@ -40,7 +40,7 @@ export function Hero() {
     >
       <ParallaxHero />
       <motion.div
-        className="max-w-4xl mx-auto text-center relative z-10"
+        className="section-container text-center relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

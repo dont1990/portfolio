@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import SectionContainer from "../layout/section-container";
 
 type Props = {};
 
@@ -12,7 +11,7 @@ const Footer = (props: Props) => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <SectionContainer>
+    <section className="section-container">
       <motion.footer
       ref={ref}
         className="mt-20 pt-8 border-t text-center text-muted-foreground"
@@ -22,7 +21,7 @@ const Footer = (props: Props) => {
       >
         <p>&copy; 2025 Alex Johnson. All rights reserved.</p>
       </motion.footer>
-    </SectionContainer>
+    </section>
   );
 };
 

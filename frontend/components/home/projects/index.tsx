@@ -114,7 +114,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-20" ref={ref}>
-      <div className="mx-auto">
+      <div className="section-container">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}

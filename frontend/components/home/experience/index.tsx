@@ -78,7 +78,7 @@ export function Experience() {
 
   return (
     <section id="experience" className="py-20 bg-muted/30" ref={ref}>
-      <div className="mx-auto p-4">
+      <div className="section-container">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}

@@ -67,7 +67,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20" ref={ref}>
-      <div className="mx-auto">
+      <div className="section-container">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -87,7 +87,7 @@ export function Contact() {
             animate={isInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="hover:shadow-lg transition-shadow h-full flex flex-col justify-center">
               <CardHeader>
                 <CardTitle>Send me a message</CardTitle>
                 <CardDescription>

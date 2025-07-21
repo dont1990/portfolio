@@ -1,47 +1,27 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SectionParallax } from "@/components/section-parallax";
 
-export function Skills() {
+type Skill = {
+  name: string;
+  level: number;
+};
+
+type SkillCategory = {
+  title: string;
+  skills: Skill[];
+};
+
+type Props = {
+  skills: SkillCategory[];
+};
+
+export function Skills({ skills }: Props) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const skillCategories = [
-    {
-      title: "Frontend",
-      skills: [
-        { name: "React", level: 95 },
-        { name: "Next.js", level: 90 },
-        { name: "TypeScript", level: 88 },
-        { name: "JavaScript", level: 95 },
-        { name: "HTML/CSS", level: 98 },
-      ],
-    },
-    {
-      title: "Styling",
-      skills: [
-        { name: "Tailwind CSS", level: 92 },
-        { name: "Styled Components", level: 85 },
-        { name: "SASS/SCSS", level: 88 },
-        { name: "CSS Modules", level: 80 },
-        { name: "Framer Motion", level: 75 },
-      ],
-    },
-    {
-      title: "Tools & Others",
-      skills: [
-        { name: "Git", level: 90 },
-        { name: "Webpack", level: 75 },
-        { name: "Jest", level: 80 },
-        { name: "Figma", level: 85 },
-        { name: "Node.js", level: 70 },
-      ],
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -79,8 +59,7 @@ export function Skills() {
             Skills & Technologies
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Here are the technologies and tools I work with to bring ideas to
-            life.
+            Here are the technologies and tools I work with to bring ideas to life.
           </p>
         </motion.div>
 
@@ -91,7 +70,7 @@ export function Skills() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {skillCategories.map((category, index) => (
+            {skills.map((category, index) => (
               <motion.div key={index} variants={cardVariants as any}>
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">

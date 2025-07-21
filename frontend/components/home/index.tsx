@@ -16,10 +16,12 @@ import { ParallaxParticles } from "@/components/parallax-particles";
 import Footer from "@/components/footer";
 import { fetchHeroData } from "@/lib/fetch/fetchHero";
 import { fetchAboutData } from "@/lib/fetch/fetchAbout";
+import { fetchSkills } from "@/lib/fetch/fetchSkills";
 
 const HomePage = async () => {
   const hero = await fetchHeroData();
   const about = await fetchAboutData();
+  const skills = await fetchSkills();
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,7 +39,7 @@ const HomePage = async () => {
           skills={about.skills}
           features={about.features}
         />
-        <Skills />
+        <Skills skills={skills} />
         <Projects />
         <Experience />
         <Contact />

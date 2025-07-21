@@ -11,83 +11,24 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SectionParallax } from "@/components/section-parallax";
 
-export function Projects() {
+type ProjectProps = {
+  projects: {
+    title: string;
+    description: string;
+    image: string;
+    technologies: string[];
+    liveUrl: string;
+    githubUrl: string;
+  }[];
+};
+
+export function Projects({ projects }: ProjectProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const projects = [
-    {
-      title: "E-Commerce Dashboard",
-      description:
-        "A comprehensive admin dashboard for managing online stores with real-time analytics, inventory management, and order processing.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Chart.js",
-      ],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "A collaborative project management tool with drag-and-drop functionality, real-time updates, and team collaboration features.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["React", "Redux", "Node.js", "Socket.io", "MongoDB"],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Weather Forecast App",
-      description:
-        "A beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: [
-        "React",
-        "TypeScript",
-        "OpenWeather API",
-        "Mapbox",
-        "Framer Motion",
-      ],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Portfolio Website",
-      description:
-        "A responsive portfolio website showcasing projects and skills with smooth animations and modern design principles.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "MDX"],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Social Media Dashboard",
-      description:
-        "A unified dashboard for managing multiple social media accounts with analytics, scheduling, and engagement tracking.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["React", "Next.js", "Prisma", "PostgreSQL", "Recharts"],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      title: "Recipe Finder App",
-      description:
-        "A recipe discovery app with advanced search filters, meal planning, and shopping list generation features.",
-      image: "/placeholder.svg?height=300&width=500",
-      technologies: ["React", "TypeScript", "Spoonacular API", "Local Storage"],
-      liveUrl: "#",
-      githubUrl: "#",
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -157,21 +98,19 @@ export function Projects() {
                       whileHover={{ opacity: 1 }}
                     >
                       <div className="flex gap-2">
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                        >
-                          <Button size="sm" variant="secondary">
-                            <ExternalLink className="h-4 w-4" />
-                          </Button>
+                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <Button size="sm" variant="secondary">
+                              <ExternalLink className="h-4 w-4" />
+                            </Button>
+                          </a>
                         </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                        >
-                          <Button size="sm" variant="secondary">
-                            <Github className="h-4 w-4" />
-                          </Button>
+                        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Button size="sm" variant="secondary">
+                              <Github className="h-4 w-4" />
+                            </Button>
+                          </a>
                         </motion.div>
                       </div>
                     </motion.div>
@@ -210,18 +149,19 @@ export function Projects() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <Button size="sm" className="w-full">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </Button>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="w-full">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Live Demo
+                          </Button>
+                        </a>
                       </motion.div>
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <Button size="sm" variant="outline">
-                          <Github className="h-4 w-4" />
-                        </Button>
+                      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" variant="outline">
+                            <Github className="h-4 w-4" />
+                          </Button>
+                        </a>
                       </motion.div>
                     </div>
                   </CardContent>

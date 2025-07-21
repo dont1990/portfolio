@@ -1,5 +1,5 @@
 export async function fetchHeroData() {
-  const res = await fetch("http://localhost:4000/api/hero", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero`, {
     cache: "force-cache",
   });
   if (!res.ok) throw new Error("Failed to fetch hero data");

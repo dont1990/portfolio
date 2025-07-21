@@ -17,12 +17,15 @@ import Footer from "@/components/footer";
 import { fetchHeroData } from "@/lib/fetch/fetchHero";
 import { fetchAboutData } from "@/lib/fetch/fetchAbout";
 import { fetchSkills } from "@/lib/fetch/fetchSkills";
-import { Suspense } from "react";
+import { fetchProjects } from "@/lib/fetch/fetchProjects";
+import { fetchExperiences } from "@/lib/fetch/fetchExperiences";
 
 const HomePage = async () => {
   const hero = await fetchHeroData();
   const about = await fetchAboutData();
   const skills = await fetchSkills();
+  const projects = await fetchProjects();
+  const experiences = await fetchExperiences();
 
   return (
     <div className="min-h-screen bg-background">
@@ -34,19 +37,15 @@ const HomePage = async () => {
       <Navigation />
 
       <main>
-        <Suspense
-          fallback={<div className="bg-rose-500 size-100">hero Loading...</div>}
-        >
-          <Hero hero={hero} />
-        </Suspense>
+        <Hero hero={hero} />
         <About
           description={about.description}
           skills={about.skills}
           features={about.features}
         />
         <Skills skills={skills} />
-        <Projects />
-        <Experience />
+        <Projects projects={projects} />
+        <Experience data={experiences} />
         <Contact />
       </main>
       <Footer />

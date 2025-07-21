@@ -6,7 +6,23 @@ import { motion } from "framer-motion";
 import { ParallaxHero } from "@/components/parallax-hero";
 import Typewriter from "../../type-writer";
 
-export function Hero() {
+type HeroData = {
+  name: string;
+  initials: string;
+  roles: string[];
+  bio: string;
+  socials: {
+    github: string;
+    linkedin: string;
+    email: string;
+  };
+};
+
+interface HeroProps {
+  hero: HeroData;
+}
+
+export function Hero({ hero }: HeroProps) {
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -51,24 +67,20 @@ export function Hero() {
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            AJ
+            {hero.initials}
           </motion.div>
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4"
             variants={itemVariants}
           >
-            Hi, I'm <span className="text-primary">Alex Johnson</span>
+            Hi, I'm <span className="text-primary">{hero.name}</span>
           </motion.h1>
           <motion.div
             className="text-muted-foreground mb-8"
             variants={itemVariants}
           >
             <Typewriter
-              words={[
-                "Frontend Developer",
-                "React Enthusiast",
-                "GSAP Animator",
-              ]}
+              words={hero.roles}
               typingSpeed={100}
               deletingSpeed={50}
               pauseTime={1000}
@@ -81,9 +93,7 @@ export function Hero() {
             className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8"
             variants={itemVariants}
           >
-            I create beautiful, responsive web applications with modern
-            technologies. Passionate about clean code, user experience, and
-            bringing ideas to life.
+            {hero.bio}
           </motion.p>
         </motion.div>
 
@@ -116,25 +126,39 @@ export function Hero() {
             whileHover={{ scale: 1.2, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
           >
-            <Button variant="ghost" size="icon">
-              <Github className="h-5 w-5" />
-            </Button>
+            <a
+              href={hero.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="ghost" size="icon">
+                <Github className="h-5 w-5" />
+              </Button>
+            </a>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.2, rotate: -5 }}
             whileTap={{ scale: 0.9 }}
           >
-            <Button variant="ghost" size="icon">
-              <Linkedin className="h-5 w-5" />
-            </Button>
+            <a
+              href={hero.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="ghost" size="icon">
+                <Linkedin className="h-5 w-5" />
+              </Button>
+            </a>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.2, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
           >
-            <Button variant="ghost" size="icon">
-              <Mail className="h-5 w-5" />
-            </Button>
+            <a href={hero.socials.email}>
+              <Button variant="ghost" size="icon">
+                <Mail className="h-5 w-5" />
+              </Button>
+            </a>
           </motion.div>
         </motion.div>
 

@@ -1,0 +1,25 @@
+{
+  "description": [
+    "I'm a passionate frontend developer with 5+ years of experience creating engaging digital experiences that users love.",
+    "My journey in web development started with a curiosity about how websites work. Today, I specialize in React, Next.js, and modern frontend technologies to build scalable, performant applications.",
+    "I believe in writing clean, maintainable code and creating intuitive user interfaces that solve real problems. When I'm not coding, you'll find me exploring new technologies, contributing to open source, or mentoring aspiring developers."
+  ],
+  "skills": ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+  "features": [
+    {
+      "icon": "Code",
+      "title": "Clean Code",
+      "description": "Writing maintainable, scalable code that follows best practices and industry standards."
+    },
+    {
+      "icon": "Palette",
+      "title": "UI/UX Focus",
+      "description": "Creating beautiful, intuitive interfaces that provide exceptional user experiences."
+    },
+    {
+      "icon": "Zap",
+      "title": "Performance",
+      "description": "Optimizing applications for speed, accessibility, and seamless user interactions."
+    }
+  ]
+}

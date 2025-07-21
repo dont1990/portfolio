@@ -14,8 +14,13 @@ import { ColorSchemePicker } from "@/components/color-scheme-picker";
 import { ParallaxBackground } from "@/components/parallax-background";
 import { ParallaxParticles } from "@/components/parallax-particles";
 import Footer from "@/components/footer";
+import { fetchHeroData } from "@/lib/fetch/fetchHero";
+import { fetchAboutData } from "@/lib/fetch/fetchAbout";
 
-const HomePage = () => {
+const HomePage = async () => {
+  const hero = await fetchHeroData();
+  const about = await fetchAboutData();
+
   return (
     <div className="min-h-screen bg-background">
       <ParallaxBackground />
@@ -26,8 +31,12 @@ const HomePage = () => {
       <Navigation />
 
       <main>
-        <Hero />
-        <About />
+        <Hero hero={hero} />
+        <About
+          description={about.description}
+          skills={about.skills}
+          features={about.features}
+        />
         <Skills />
         <Projects />
         <Experience />

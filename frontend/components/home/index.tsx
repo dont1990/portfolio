@@ -17,6 +17,7 @@ import Footer from "@/components/footer";
 import { fetchHeroData } from "@/lib/fetch/fetchHero";
 import { fetchAboutData } from "@/lib/fetch/fetchAbout";
 import { fetchSkills } from "@/lib/fetch/fetchSkills";
+import { Suspense } from "react";
 
 const HomePage = async () => {
   const hero = await fetchHeroData();
@@ -33,7 +34,11 @@ const HomePage = async () => {
       <Navigation />
 
       <main>
-        <Hero hero={hero} />
+        <Suspense
+          fallback={<div className="bg-rose-500 size-100">hero Loading...</div>}
+        >
+          <Hero hero={hero} />
+        </Suspense>
         <About
           description={about.description}
           skills={about.skills}

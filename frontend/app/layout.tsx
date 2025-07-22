@@ -7,7 +7,12 @@ import {
   ColorSchemeProvider,
 } from "@/app/components/theme-provider";
 import { ThemeTransition } from "@/app/components/theme-transition";
-// Removed: import { Preloader } from "@/app/components/preloader"
+import { ParallaxBackground } from "./components/parallax-background";
+import { ParallaxParticles } from "./components/parallax-particles";
+import { ScrollProgress } from "./components/scroll-progress";
+import { ColorSchemePicker } from "./components/color-scheme-picker";
+import { EnhancedThemeSettings } from "./components/enhanced-theme-settings";
+import { ScrollToTop } from "./components/scroll-to-top";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +37,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ColorSchemeProvider>
-            {children}
+            <div className="min-h-screen bg-background">
+              <ParallaxBackground />
+              <ParallaxParticles />
+              <ScrollProgress />
+              <ThemeTransition />
+              {/* <ReadingTime /> */}
+              {children}
+              <ScrollToTop />
+              <EnhancedThemeSettings />
+              <ColorSchemePicker />
+            </div>
             <ThemeTransition />
           </ColorSchemeProvider>
         </ThemeProvider>

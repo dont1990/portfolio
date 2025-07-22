@@ -87,7 +87,7 @@ export default function ContactSubmissionsPage({ submissions }: Props) {
                     <PopoverContent
                       side="bottom"
                       align="start"
-                      className="w-[320px] rounded-2xl shadow-xl  bg-popover p-3 space-y-3"
+                      className="w-[320px] rounded-2xl shadow-xl border border-primary bg-popover p-3 space-y-3"
                       onMouseEnter={() => setOpen(true)}
                       onMouseLeave={() => setOpen(false)}
                     >

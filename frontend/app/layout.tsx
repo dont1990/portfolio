@@ -13,6 +13,7 @@ import { ScrollProgress } from "./components/scroll-progress";
 import { ColorSchemePicker } from "./components/color-scheme-picker";
 import { EnhancedThemeSettings } from "./components/enhanced-theme-settings";
 import { ScrollToTop } from "./components/scroll-to-top";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,6 +48,7 @@ export default function RootLayout({
               <ScrollToTop />
               <EnhancedThemeSettings />
               <ColorSchemePicker />
+              <Toaster position="top-center" reverseOrder={false} />
             </div>
             <ThemeTransition />
           </ColorSchemeProvider>

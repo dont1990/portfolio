@@ -10,7 +10,7 @@ import {
   CardContent,
 } from "@/app/components/ui/card";
 import { Label } from "@/app/components/ui/label";
-import { useToast } from "@/app/components/ui/use-toast";
+import { toast } from "react-hot-toast";
 
 type ContactInfo = {
   email: string;
@@ -28,7 +28,6 @@ type Props = {
 
 export default function ContactInfoContent({ contactInfoData }: Props) {
   const [data, setData] = useState<ContactInfo>(contactInfoData);
-  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -66,88 +65,86 @@ export default function ContactInfoContent({ contactInfoData }: Props) {
     );
 
     if (res.ok) {
-      toast({ title: "Success", description: "Contact info updated." });
+      toast.success("Contact info updated.");
     } else {
-      toast({
-        title: "Error",
-        description: "Failed to update contact info.",
-        variant: "destructive",
-      });
+      toast.error("Failed to update contact info.");
     }
   };
 
   return (
-    <Card className="max-w-xl mx-auto">
-      <CardHeader>
-        <CardTitle>Edit Contact Information</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            name="email"
-            value={data.email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input
-            name="phone"
-            value={data.phone}
-            onChange={handleChange}
-            placeholder="Phone"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="location">Location</Label>
-          <Input
-            name="location"
-            value={data.location}
-            onChange={handleChange}
-            placeholder="Location"
-          />
-        </div>
-
-        <div className="pt-4 border-t">
-          <h4 className="text-lg font-medium mb-2">Social Links</h4>
-
+    <section className="section-container">
+      <Card className="max-w-xl mx-auto">
+        <CardHeader>
+          <CardTitle>Edit Contact Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="github">GitHub</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              name="social.github"
-              value={data.social.github}
+              name="email"
+              value={data.email}
               onChange={handleChange}
-              placeholder="GitHub URL"
-            />
-
-            <Label htmlFor="linkedin">LinkedIn</Label>
-            <Input
-              name="social.linkedin"
-              value={data.social.linkedin}
-              onChange={handleChange}
-              placeholder="LinkedIn URL"
-            />
-
-            <Label htmlFor="twitter">Twitter</Label>
-            <Input
-              name="social.twitter"
-              value={data.social.twitter}
-              onChange={handleChange}
-              placeholder="Twitter URL"
+              placeholder="Email"
             />
           </div>
-        </div>
 
-        <div className="pt-4">
-          <Button onClick={handleSave} className="w-full">
-            Save Changes
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+          <div className="space-y-2">
+            <Label htmlFor="phone">Phone</Label>
+            <Input
+              name="phone"
+              value={data.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="location">Location</Label>
+            <Input
+              name="location"
+              value={data.location}
+              onChange={handleChange}
+              placeholder="Location"
+            />
+          </div>
+
+          <div className="pt-4 border-t">
+            <h4 className="text-lg font-medium mb-2">Social Links</h4>
+
+            <div className="space-y-2">
+              <Label htmlFor="github">GitHub</Label>
+              <Input
+                name="social.github"
+                value={data.social.github}
+                onChange={handleChange}
+                placeholder="GitHub URL"
+              />
+
+              <Label htmlFor="linkedin">LinkedIn</Label>
+              <Input
+                name="social.linkedin"
+                value={data.social.linkedin}
+                onChange={handleChange}
+                placeholder="LinkedIn URL"
+              />
+
+              <Label htmlFor="twitter">Twitter</Label>
+              <Input
+                name="social.twitter"
+                value={data.social.twitter}
+                onChange={handleChange}
+                placeholder="Twitter URL"
+              />
+            </div>
+          </div>
+
+          <div className="pt-4">
+            <Button onClick={handleSave} className="w-full">
+              Save Changes
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
   );
 }

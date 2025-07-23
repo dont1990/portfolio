@@ -12,8 +12,8 @@ import { cn } from "@/app/lib/utils";
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/contact", label: "Contact", icon: Mail },
-  { href: "/admin/settings", label: "Settings", icon: Settings },
   { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
+  { href: "/admin/hero", label: "Hero", icon: Mail },
 ];
 
 export function AdminNavigation() {

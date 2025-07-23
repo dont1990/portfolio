@@ -1,7 +1,11 @@
 {
-  "name": "Alex Johnson",
+  "name": "Alex Johnson 1",
   "initials": "AJ",
-  "roles": ["Frontend Developer", "React Enthusiast", "GSAP Animator"],
+  "roles": [
+    "Frontend Developer",
+    "React Enthusiast",
+    "GSAP Animator"
+  ],
   "bio": "I create beautiful, responsive web applications with modern technologies. Passionate about clean code, user experience, and bringing ideas to life.",
   "socials": {
     "github": "https://github.com/your-username",

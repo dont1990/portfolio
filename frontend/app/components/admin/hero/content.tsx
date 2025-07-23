@@ -11,36 +11,38 @@ import {
 } from "@/app/components/ui/card";
 import { Label } from "@/app/components/ui/label";
 import { toast } from "react-hot-toast";
-import * as actions from "../actions/contactInfoActions";
+import * as actions from "./actions/heroActions";
 
-type ContactInfo = {
-  email: string;
-  phone: string;
-  location: string;
-  social: {
+type HeroData = {
+  name: string;
+  initials: string;
+  roles: string[];
+  bio: string;
+  socials: {
     github: string;
     linkedin: string;
-    twitter: string;
+    email: string;
   };
 };
+
 type Props = {
-  contactInfoData: ContactInfo;
+  heroData: HeroData;
 };
 
-export default function ContactEditor({ contactInfoData }: Props) {
-  const [data, setData] = useState<ContactInfo>(contactInfoData);
+export default function HeroEditor({ heroData }: Props) {
+  const [data, setData] = useState<HeroData>(heroData);
   const [isPending, startTransition] = useTransition();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
 
     setData((prev) => {
-      if (!prev) return prev;
-
       if (name.includes(".")) {
         const [section, key] = name.split(".") as [
-          "social",
-          keyof ContactInfo["social"]
+          "socials",
+          keyof HeroData["socials"]
         ];
 
         return {
@@ -56,13 +58,20 @@ export default function ContactEditor({ contactInfoData }: Props) {
     });
   };
 
+  const handleRolesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const roles = e.target.value.split(",").map((r) => r.trim());
+    setData((prev) => ({ ...prev, roles }));
+  };
+
   const handleSave = () => {
+        console.log(data)
+
     startTransition(async () => {
       try {
-        await actions.updateContactInfo(data);
-        toast.success("Contact info updated.");
+        await actions.updateHeroInfo(data);
+        toast.success("Hero info updated.");
       } catch (err) {
-        toast.error("Failed to update contact info.");
+        toast.error("Failed to update hero info.");
       }
     });
   };
@@ -71,36 +80,36 @@ export default function ContactEditor({ contactInfoData }: Props) {
     <section className="section-container">
       <Card className="max-w-xl mx-auto">
         <CardHeader>
-          <CardTitle>Edit Contact Information</CardTitle>
+          <CardTitle>Edit Hero Info</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label>Name</Label>
+            <Input name="name" value={data.name} onChange={handleChange} />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Initials</Label>
+            <Input name="initials" value={data.initials} onChange={handleChange} />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Roles (comma-separated)</Label>
             <Input
-              name="email"
-              value={data.email}
-              onChange={handleChange}
-              placeholder="Email"
+              value={data.roles.join(", ")}
+              onChange={handleRolesChange}
+              placeholder="e.g. Developer, Designer, Freelancer"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone">Phone</Label>
-            <Input
-              name="phone"
-              value={data.phone}
+            <Label>Bio</Label>
+            <textarea
+              name="bio"
+              value={data.bio}
               onChange={handleChange}
-              placeholder="Phone"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="location">Location</Label>
-            <Input
-              name="location"
-              value={data.location}
-              onChange={handleChange}
-              placeholder="Location"
+              className="w-full p-2 rounded-md border"
+              rows={4}
             />
           </div>
 
@@ -108,38 +117,31 @@ export default function ContactEditor({ contactInfoData }: Props) {
             <h4 className="text-lg font-medium mb-2">Social Links</h4>
 
             <div className="space-y-2">
-              <Label htmlFor="github">GitHub</Label>
+              <Label>GitHub</Label>
               <Input
-                name="social.github"
-                value={data.social.github}
+                name="socials.github"
+                value={data.socials.github}
                 onChange={handleChange}
-                placeholder="GitHub URL"
               />
 
-              <Label htmlFor="linkedin">LinkedIn</Label>
+              <Label>LinkedIn</Label>
               <Input
-                name="social.linkedin"
-                value={data.social.linkedin}
+                name="socials.linkedin"
+                value={data.socials.linkedin}
                 onChange={handleChange}
-                placeholder="LinkedIn URL"
               />
 
-              <Label htmlFor="twitter">Twitter</Label>
+              <Label>Email</Label>
               <Input
-                name="social.twitter"
-                value={data.social.twitter}
+                name="socials.email"
+                value={data.socials.email}
                 onChange={handleChange}
-                placeholder="Twitter URL"
               />
             </div>
           </div>
 
           <div className="pt-4">
-            <Button
-              onClick={handleSave}
-              className="w-full"
-              isLoading={isPending}
-            >
+            <Button onClick={handleSave} className="w-full" isLoading={isPending}>
               {!isPending && "Save Changes"}
             </Button>
           </div>

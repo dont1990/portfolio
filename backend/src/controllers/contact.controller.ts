@@ -1,32 +1,3 @@
-// import { Request, Response } from "express";
-// import fs from "fs";
-// import path from "path";
-
-// const filePath = path.join(__dirname, "../data/contacts.json");
-
-// export const submitContact = (req: Request, res: Response) => {
-//   const newEntry = req.body;
-
-//   fs.readFile(filePath, "utf8", (err, data) => {
-//     if (err) return res.status(500).json({ error: "Unable to read data." });
-
-//     let contacts = [];
-//     try {
-//       contacts = JSON.parse(data);
-//     } catch (parseErr) {
-//       contacts = [];
-//     }
-
-//     contacts.push({ ...newEntry, submittedAt: new Date().toISOString() });
-
-//     fs.writeFile(filePath, JSON.stringify(contacts, null, 2), (err) => {
-//       if (err) return res.status(500).json({ error: "Unable to save contact." });
-
-//       res.status(201).json({ message: "Contact saved successfully." });
-//     });
-//   });
-// };
-
 import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";

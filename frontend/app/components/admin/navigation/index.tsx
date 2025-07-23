@@ -13,7 +13,7 @@ const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/contact", label: "Contact", icon: Mail },
   { href: "/admin/settings", label: "Settings", icon: Settings },
-  { href: "/admin/contact-info", label: "contact-info", icon: Mail },
+  { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
 ];
 
 export function AdminNavigation() {

@@ -23,6 +23,8 @@ const adminLinks = [
   { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
   { href: "/admin/hero", label: "Hero", icon: UserCircle },
   { href: "/admin/about", label: "About", icon: Info },
+  { href: "/admin/skills", label: "Skills", icon: Info },
+  { href: "/admin/projects", label: "Projects", icon: Info },
 ];
 
 export function AdminNavigation() {

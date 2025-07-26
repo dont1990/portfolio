@@ -2,31 +2,76 @@
   {
     "title": "Frontend",
     "skills": [
-      { "name": "React", "level": 95 },
-      { "name": "Next.js", "level": 90 },
-      { "name": "TypeScript", "level": 80 },
-      { "name": "JavaScript", "level": 95 },
-      { "name": "HTML/CSS", "level": 98 }
+      {
+        "name": "React",
+        "level": 95
+      },
+      {
+        "name": "Next.js",
+        "level": 80
+      },
+      {
+        "name": "TypeScript",
+        "level": 80
+      },
+      {
+        "name": "JavaScript",
+        "level": 95
+      },
+      {
+        "name": "HTML/CSS",
+        "level": 98
+      }
     ]
   },
   {
     "title": "Styling",
     "skills": [
-      { "name": "Tailwind CSS", "level": 92 },
-      { "name": "Styled Components", "level": 85 },
-      { "name": "SASS/SCSS", "level": 88 },
-      { "name": "CSS Modules", "level": 80 },
-      { "name": "Framer Motion", "level": 75 }
+      {
+        "name": "Tailwind CSS",
+        "level": 92
+      },
+      {
+        "name": "Styled Components",
+        "level": 85
+      },
+      {
+        "name": "SASS/SCSS",
+        "level": 88
+      },
+      {
+        "name": "CSS Modules",
+        "level": 80
+      },
+      {
+        "name": "Framer Motion",
+        "level": 75
+      }
     ]
   },
   {
     "title": "Tools & Others",
     "skills": [
-      { "name": "Git", "level": 90 },
-      { "name": "Webpack", "level": 75 },
-      { "name": "Jest", "level": 80 },
-      { "name": "Figma", "level": 85 },
-      { "name": "Node.js", "level": 70 }
+      {
+        "name": "Git",
+        "level": 90
+      },
+      {
+        "name": "Webpack",
+        "level": 75
+      },
+      {
+        "name": "Jest",
+        "level": 80
+      },
+      {
+        "name": "Figma",
+        "level": 85
+      },
+      {
+        "name": "Node.js",
+        "level": 70
+      }
     ]
   }
 ]

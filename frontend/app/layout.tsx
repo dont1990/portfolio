@@ -41,7 +41,6 @@ export default function RootLayout({
             <div className="min-h-screen bg-background">
               <ParallaxBackground />
               {/* <ParallaxParticles /> */}
-              <ScrollProgress />
               <ThemeTransition />
               {/* <ReadingTime /> */}
               {children}

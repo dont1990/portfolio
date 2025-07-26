@@ -80,7 +80,7 @@ export function ProjectsContent({ projects }: ProjectProps) {
           >
             {projects.map((project, index) => (
               <motion.div key={index} variants={cardVariants as any}>
-                <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
+                <Card className="overflow-hidden hover:shadow-lg transition-shadow group h-full">
                   <motion.div
                     className="relative h-48 overflow-hidden"
                     whileHover={{ scale: 1.05 }}
@@ -129,67 +129,69 @@ export function ProjectsContent({ projects }: ProjectProps) {
                       </div>
                     </motion.div>
                   </motion.div>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <motion.div
-                      className="flex flex-wrap gap-2 mb-4"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                    >
-                      {project.technologies.map((tech, techIndex) => (
+                  <div className="flex flex-col justify-between h-[calc(100%-192px)]">
+                    <CardHeader>
+                      <CardTitle className="text-xl">{project.title}</CardTitle>
+                      <CardDescription>{project.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <motion.div
+                        className="flex flex-wrap gap-2 mb-4"
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                      >
+                        {project.technologies.map((tech, techIndex) => (
+                          <motion.div
+                            key={techIndex}
+                            initial={{ scale: 0 }}
+                            animate={isInView ? { scale: 1 } : { scale: 0 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: 0.5 + index * 0.1 + techIndex * 0.05,
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            <Badge variant="secondary" className="text-xs">
+                              {tech}
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                      <div className="flex gap-2">
                         <motion.div
-                          key={techIndex}
-                          initial={{ scale: 0 }}
-                          animate={isInView ? { scale: 1 } : { scale: 0 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: 0.5 + index * 0.1 + techIndex * 0.05,
-                          }}
-                          whileHover={{ scale: 1.1 }}
+                          className="flex-1"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <Badge variant="secondary" className="text-xs">
-                            {tech}
-                          </Badge>
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button size="sm" className="w-full">
+                              <ExternalLink className="mr-2 h-4 w-4" />
+                              Live Demo
+                            </Button>
+                          </a>
                         </motion.div>
-                      ))}
-                    </motion.div>
-                    <div className="flex gap-2">
-                      <motion.div
-                        className="flex-1"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                         >
-                          <Button size="sm" className="w-full">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Live Demo
-                          </Button>
-                        </a>
-                      </motion.div>
-                      <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button size="sm" variant="outline">
-                            <Github className="h-4 w-4" />
-                          </Button>
-                        </a>
-                      </motion.div>
-                    </div>
-                  </CardContent>
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button size="sm" variant="outline">
+                              <Github className="h-4 w-4" />
+                            </Button>
+                          </a>
+                        </motion.div>
+                      </div>
+                    </CardContent>
+                  </div>
                 </Card>
               </motion.div>
             ))}

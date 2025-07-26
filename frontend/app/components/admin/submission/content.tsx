@@ -34,7 +34,7 @@ type Props = {
   submissions: Submission[];
 };
 
-export default function ContactSubmissionsPage({ submissions }: Props) {
+export default function Submissions({ submissions }: Props) {
   return (
     <section className="section-container">
       <Card>

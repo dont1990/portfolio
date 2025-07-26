@@ -16,6 +16,5 @@ export async function updateContactInfo(data: any) {
     throw new Error("Failed to update contact info");
   }
 
-  //   revalidatePath("/admin/contact-info");
   revalidateTag("contact-info");
 }

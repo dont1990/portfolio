@@ -12,6 +12,7 @@ import {
 import { Label } from "@/app/components/ui/label";
 import { toast } from "react-hot-toast";
 import * as actions from "../actions/contactInfoActions";
+import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 
 type ContactInfo = {
   email: string;
@@ -30,6 +31,14 @@ type Props = {
 export default function ContactEditor({ contactInfoData }: Props) {
   const [data, setData] = useState<ContactInfo>(contactInfoData);
   const [isPending, startTransition] = useTransition();
+
+  useKeyPressHandler({
+    key: "Enter",
+    callback: (e) => {
+      e.preventDefault();
+      handleSave();
+    },
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

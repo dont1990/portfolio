@@ -6,3 +6,10 @@ export async function fetchHeroData() {
   if (!res.ok) throw new Error("Failed to fetch hero data");
   return res.json();
 }
+
+
+export const fetchHeroDataClient = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero`);
+  if (!res.ok) throw new Error("Failed to fetch hero data");
+  return res.json();
+};

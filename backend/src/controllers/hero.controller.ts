@@ -10,7 +10,6 @@ export const getHero = (req: Request, res: Response) => {
 };
 
 export const updateHero = (req: Request, res: Response) => {
-  console.log("req", req);
   try {
     fs.writeFileSync(filePath, JSON.stringify(req.body, null, 2));
     res.json({ message: "Hero data updated successfully." });

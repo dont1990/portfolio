@@ -3,7 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Mail, Settings, Menu } from "lucide-react";
+import {
+  LayoutDashboard,
+  Mail,
+  FileText,
+  UserCircle,
+  Info,
+  FileSignature,
+  Menu,
+} from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import clsx from "clsx";
 import { Button } from "../../ui/button";
@@ -11,9 +19,10 @@ import { cn } from "@/app/lib/utils";
 
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/contact", label: "Contact", icon: Mail },
+  { href: "/admin/submission", label: "Submission", icon: FileText },
   { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
-  { href: "/admin/hero", label: "Hero", icon: Mail },
+  { href: "/admin/hero", label: "Hero", icon: UserCircle },
+  { href: "/admin/about", label: "About", icon: Info },
 ];
 
 export function AdminNavigation() {
@@ -27,6 +36,7 @@ export function AdminNavigation() {
           key={href}
           href={href}
           onClick={() => setOpen(false)}
+          prefetch={true}
           className={clsx(
             "flex items-center gap-3 px-4 py-2 rounded-md transition-colors",
             pathname === href
@@ -54,7 +64,7 @@ export function AdminNavigation() {
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="mb-auto">
-              <Menu className="w-5 h-5" />
+              <Menu className="w-6 h-6" />
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-4">

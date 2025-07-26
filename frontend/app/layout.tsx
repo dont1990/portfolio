@@ -40,7 +40,7 @@ export default function RootLayout({
           <ColorSchemeProvider>
             <div className="min-h-screen bg-background">
               <ParallaxBackground />
-              <ParallaxParticles />
+              {/* <ParallaxParticles /> */}
               <ScrollProgress />
               <ThemeTransition />
               {/* <ReadingTime /> */}

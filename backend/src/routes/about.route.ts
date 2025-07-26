@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { getAbout } from "../controllers/about.controller";
+import express from "express";
+import { getAbout, updateAbout } from "../controllers/about.controller";
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", getAbout);
+router.put("/", updateAbout); 
 
 export default router;

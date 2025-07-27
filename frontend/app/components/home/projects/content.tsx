@@ -14,16 +14,10 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SectionParallax } from "@/app/components/section-parallax";
+import { Project } from "@/app/types/shared/project/project";
 
 type ProjectProps = {
-  projects: {
-    title: string;
-    description: string;
-    image: string;
-    technologies: string[];
-    liveUrl: string;
-    githubUrl: string;
-  }[];
+  projects: Project[];
 };
 
 export function ProjectsContent({ projects }: ProjectProps) {

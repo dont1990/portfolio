@@ -15,17 +15,10 @@ import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import toast from "react-hot-toast";
+import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 
-type ContactInfo = {
-  email: string;
-  phone: string;
-  location: string;
-  social: {
-    github: string;
-    linkedin: string;
-    twitter: string;
-  };
-};
+
 type Props = {
   contactInfoData: ContactInfo;
 };
@@ -51,10 +44,10 @@ export function ContactContent({ contactInfoData }: Props) {
     });
 
     if (res.ok) {
-      console.log("Form submitted successfully");
+      toast.success("Form submitted successfully.");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } else {
-      console.error("Failed to submit form");
+      toast.success("Failed to submit form");
     }
   };
 

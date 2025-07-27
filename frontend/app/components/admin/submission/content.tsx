@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -20,15 +20,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui/popover"; // adjust path if needed
+import { Submission } from "../../../types/submission/submission";
 
-interface Submission {
-  id: number;
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  submittedAt: string;
-}
 
 type Props = {
   submissions: Submission[];

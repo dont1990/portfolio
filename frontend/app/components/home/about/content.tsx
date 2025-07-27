@@ -6,18 +6,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ParallaxContainer } from "@/app/components/section-parallax";
-
-type Feature = {
-  icon: "Code" | "Palette" | "Zap";
-  title: string;
-  description: string;
-};
-
-interface AboutProps {
-  description: string[];
-  skills: string[];
-  features: Feature[];
-}
+import { AboutData } from "@/app/types/shared/about/aboutData";
 
 const iconMap = {
   Code,
@@ -25,7 +14,7 @@ const iconMap = {
   Zap,
 };
 
-export function AboutContent({ description, skills, features }: AboutProps) {
+export function AboutContent({ description, skills, features }: AboutData) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 

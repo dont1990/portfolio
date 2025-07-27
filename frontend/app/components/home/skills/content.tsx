@@ -4,16 +4,7 @@ import { Card, CardContent } from "@/app/components/ui/card";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { SectionParallax } from "@/app/components/section-parallax";
-
-type Skill = {
-  name: string;
-  level: number;
-};
-
-type SkillCategory = {
-  title: string;
-  skills: Skill[];
-};
+import { SkillCategory } from "@/app/types/shared/skill/skill";
 
 type Props = {
   skills: SkillCategory[];

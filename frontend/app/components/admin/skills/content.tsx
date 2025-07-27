@@ -13,19 +13,9 @@ import {
 import { updateSkillsData } from "./actions/updateSkills";
 import SkillsEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { fetcher } from "@/app/lib/utils/swr/fetcher";
+import { Skill, SkillCategory } from "@/app/types/shared/skill/skill";
 
-type Skill = {
-  name: string;
-  level: number;
-};
-
-type SkillCategory = {
-  title: string;
-  skills: Skill[];
-};
-
-// fetcher function for swr
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function SkillsEditor() {
   const { data, error, isLoading, mutate } = useSWR<SkillCategory[]>(
@@ -177,7 +167,9 @@ export default function SkillsEditor() {
 
           <div className="flex gap-4">
             <Button onClick={addCategory}>+ Add Category</Button>
-            <Button onClick={handleSave}>{!isLoading && "Save Changes"}</Button>
+            <Button onClick={handleSave} isLoading={isLoading}>
+              {!isLoading && "Save Changes"}
+            </Button>
           </div>
         </CardContent>
       </Card>

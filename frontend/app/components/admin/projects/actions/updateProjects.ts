@@ -1,11 +1,11 @@
 "use server";
 
+import { Project } from "@/app/types/shared/project/project";
 import { revalidateTag } from "next/cache";
 
-export async function updateProjects(data: any) {
-  console.log(data);
+export async function updateProjects(data: Project[]) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects`, {
-    method: "PUT", // or POST
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });

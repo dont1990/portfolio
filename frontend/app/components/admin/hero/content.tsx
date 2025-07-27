@@ -16,18 +16,8 @@ import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import HeroEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { HeroData } from "@/app/types/shared/hero/heroData";
 
-type HeroData = {
-  name: string;
-  initials: string;
-  roles: string[];
-  bio: string;
-  socials: {
-    github: string;
-    linkedin: string;
-    email: string;
-  };
-};
 
 export default function HeroEditor() {
   const { data, error, isLoading, mutate } = useSWR<HeroData>(

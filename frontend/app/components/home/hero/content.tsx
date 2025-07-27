@@ -5,18 +5,8 @@ import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { ParallaxHero } from "@/app/components/parallax-hero";
 import Typewriter from "../../type-writer";
+import { HeroData } from "@/app/types/shared/hero/heroData";
 
-type HeroData = {
-  name: string;
-  initials: string;
-  roles: string[];
-  bio: string;
-  socials: {
-    github: string;
-    linkedin: string;
-    email: string;
-  };
-};
 
 interface HeroContentProps {
   hero: HeroData;

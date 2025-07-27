@@ -1,8 +1,9 @@
 "use server";
 
+import { SkillCategory } from "@/app/types/shared/skill/skill";
 import { revalidateTag } from "next/cache";
 
-export async function updateSkillsData(data: any) {
+export async function updateSkillsData(data: SkillCategory[]) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/skills`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

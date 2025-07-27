@@ -14,17 +14,11 @@ import { updateProjects } from "./actions/updateProjects";
 import ProjectsEditorSkeleton from "./skeleton";
 import { Textarea } from "@/app/components/ui/textarea";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import toast from "react-hot-toast";
+import { fetcher } from "@/app/lib/utils/swr/fetcher";
+import { Project } from "@/app/types/shared/project/project";
 
-type Project = {
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  liveUrl: string;
-  githubUrl: string;
-};
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function ProjectsEditor() {
   const { data, error, isLoading, mutate } = useSWR<Project[]>(
@@ -33,6 +27,8 @@ export default function ProjectsEditor() {
   );
 
   const [projects, setProjects] = useState<Project[] | null>(null);
+
+  const [isSaving, setIsSaving] = useState(false);
 
   if (!projects && data) setProjects(data);
 
@@ -78,13 +74,21 @@ export default function ProjectsEditor() {
 
   const handleSave = async () => {
     if (!projects) return;
-    await updateProjects(projects);
-    mutate();
-    alert("Projects updated successfully!");
+    setIsSaving(true);
+    try {
+      await updateProjects(projects);
+      mutate();
+      toast.success("Projects info updated.");
+    } catch (error) {
+      toast.error("Failed to update projects info.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   if (isLoading || !projects) return <ProjectsEditorSkeleton />;
   if (error) return <p>Error loading projects</p>;
+
 
   return (
     <section className="section-container py-10">
@@ -146,7 +150,9 @@ export default function ProjectsEditor() {
 
           <div className="flex gap-4 pt-6">
             <Button onClick={addProject}>+ Add Project</Button>
-            <Button onClick={handleSave}>{!isLoading && "Save Changes"}</Button>
+            <Button onClick={handleSave} isLoading={isSaving}>
+              {!isSaving && "Save Changes"}
+            </Button>
           </div>
         </CardContent>
       </Card>

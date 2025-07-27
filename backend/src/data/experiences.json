@@ -5,21 +5,39 @@
       "company": "TechCorp Solutions",
       "period": "2022 - Present",
       "description": "Lead frontend development for enterprise applications, mentoring junior developers, and implementing modern React patterns and best practices.",
-      "technologies": ["React", "Next.js", "TypeScript", "GraphQL", "AWS"]
+      "technologies": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "GraphQL",
+        "AWS"
+      ]
     },
     {
-      "title": "Frontend Developer",
+      "title": "Mid-Level Frontend Developer",
       "company": "Digital Agency Pro",
       "period": "2020 - 2022",
       "description": "Developed responsive web applications for various clients, collaborated with design teams, and optimized application performance.",
-      "technologies": ["React", "Vue.js", "SASS", "Webpack", "Jest"]
+      "technologies": [
+        "React",
+        "Vue.js",
+        "SASS",
+        "Webpack",
+        "Jest"
+      ]
     },
     {
       "title": "Junior Frontend Developer",
       "company": "StartupXYZ",
       "period": "2019 - 2020",
       "description": "Built user interfaces for a SaaS platform, participated in code reviews, and contributed to the company's design system.",
-      "technologies": ["JavaScript", "React", "CSS3", "HTML5", "Git"]
+      "technologies": [
+        "JavaScript",
+        "React",
+        "CSS3",
+        "HTML5",
+        "Git"
+      ]
     }
   ],
   "education": [

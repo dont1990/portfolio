@@ -9,33 +9,15 @@ import {
 } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
 import { motion } from "framer-motion";
+import { ExperienceData } from "@/app/types/shared/experience/experience";
 
-interface ExperienceProps {
-  data: {
-    experiences: {
-      title: string;
-      company: string;
-      period: string;
-      description: string;
-      technologies: string[];
-    }[];
-    education: {
-      degree: string;
-      school: string;
-      period: string;
-      description: string;
-    }[];
-    certifications: {
-      name: string;
-      org: string;
-      year: string;
-    }[];
-  };
-}
+type Props = {
+  data: ExperienceData;
+};
 
-export function ExperienceContent({ data }: ExperienceProps) {
+export function ExperienceContent({ data }: Props) {
+  
   const { experiences, education, certifications } = data;
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

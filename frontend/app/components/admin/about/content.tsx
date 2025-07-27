@@ -16,14 +16,7 @@ import { fetchAboutDataClient } from "@/app/lib/fetch/fetchAbout";
 import * as actions from "./actions/aboutActions";
 import AboutEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
-
-type Feature = { title: string; description: string; icon: string };
-
-type AboutData = {
-  description: string[];
-  skills: string[];
-  features: Feature[];
-};
+import { AboutData, Feature } from "@/app/types/shared/about/aboutData";
 
 export default function AboutEditor() {
   const { data, error, isLoading, mutate } = useSWR<AboutData>(
@@ -97,7 +90,7 @@ export default function AboutEditor() {
             ...prev,
             features: [
               ...prev.features,
-              { title: "", description: "", icon: "" },
+              { title: "", description: "", icon: "Zap" },
             ],
           }
         : null

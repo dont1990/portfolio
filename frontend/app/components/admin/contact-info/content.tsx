@@ -11,19 +11,11 @@ import {
 } from "@/app/components/ui/card";
 import { Label } from "@/app/components/ui/label";
 import { toast } from "react-hot-toast";
-import * as actions from "../actions/contactInfoActions";
+import * as actions from "./actions/contactInfoActions";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 
-type ContactInfo = {
-  email: string;
-  phone: string;
-  location: string;
-  social: {
-    github: string;
-    linkedin: string;
-    twitter: string;
-  };
-};
+
 type Props = {
   contactInfoData: ContactInfo;
 };

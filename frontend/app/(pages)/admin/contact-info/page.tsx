@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import AdminContactInfo from "../../../components/admin/contact-info";
-import ContactInfoSkeleton from "@/app/components/admin/contact-info/form/skeleton";
+import ContactInfoSkeleton from "@/app/components/admin/contact-info/skeleton";
 
 const AdminContactInfoPage = () => {
   return (

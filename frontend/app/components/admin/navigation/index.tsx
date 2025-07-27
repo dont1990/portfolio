@@ -7,10 +7,13 @@ import {
   LayoutDashboard,
   Mail,
   FileText,
-  UserCircle,
+  User,
   Info,
-  FileSignature,
+  BadgeCheck,
   Menu,
+  Briefcase,
+  Layers,
+  BookOpen,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import clsx from "clsx";
@@ -21,10 +24,11 @@ const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/submission", label: "Submission", icon: FileText },
   { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
-  { href: "/admin/hero", label: "Hero", icon: UserCircle },
+  { href: "/admin/hero", label: "Hero", icon: User },
   { href: "/admin/about", label: "About", icon: Info },
-  { href: "/admin/skills", label: "Skills", icon: Info },
-  { href: "/admin/projects", label: "Projects", icon: Info },
+  { href: "/admin/skills", label: "Skills", icon: Layers }, // Changed from Info
+  { href: "/admin/projects", label: "Projects", icon: BookOpen }, // Changed from Info
+  { href: "/admin/experiences", label: "Experiences", icon: Briefcase }, // Changed from Info
 ];
 
 export function AdminNavigation() {

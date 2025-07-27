@@ -9,7 +9,6 @@ import {
   FileText,
   User,
   Info,
-  BadgeCheck,
   Menu,
   Briefcase,
   Layers,
@@ -19,6 +18,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import clsx from "clsx";
 import { Button } from "../../ui/button";
 import { cn } from "@/app/lib/utils";
+import { AdminLogoutButton } from "../logout";
 
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -54,6 +54,7 @@ export function AdminNavigation() {
           <span>{label}</span>
         </Link>
       ))}
+      <AdminLogoutButton />
     </nav>
   );
 

@@ -9,6 +9,7 @@ import contactRouter from "./routes/contact.route";
 
 // admin
 import contactInfoRoutes from "./routes/admin/contactInfo.route";
+import { basicAuth } from "./utils/basicAuth";
 
 const app = express();
 const PORT = 4000;
@@ -24,6 +25,8 @@ app.use("/api/experiences", experiencesRouter);
 app.use("/api/contact", contactRouter);
 
 // admin
+app.use("/api/admin", basicAuth);
+
 app.use("/api/admin/contact-info", contactInfoRoutes);
 
 app.listen(PORT, () => {

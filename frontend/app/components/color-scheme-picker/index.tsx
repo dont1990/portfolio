@@ -13,7 +13,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, Check, Sparkles } from "lucide-react";
 import { useColorScheme } from "@/app/components/theme-provider";
-import { colorSchemes, type ColorScheme } from "@/app/lib/color-schemes";
+import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
 
 export function ColorSchemePicker() {
   const [isOpen, setIsOpen] = useState(false);

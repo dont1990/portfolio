@@ -11,7 +11,7 @@ import {
   CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
-import { fetcher } from "@/app/lib/utils/swr/fetcher";
+import { fetcher } from "@/app/lib/utils/cn/cn/swr/fetcher";
 import toast from "react-hot-toast";
 import { ExperienceData } from "@/app/types/shared/experience/experience";
 import { updateExperiences } from "./actions/updateExperiences";

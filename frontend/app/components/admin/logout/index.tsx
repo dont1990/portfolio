@@ -7,7 +7,7 @@ export function AdminLogoutButton() {
 
   const logout = () => {
     document.cookie = "admin-auth=; path=/admin; max-age=0";
-    router.push("/admin/login");
+    router.push("/auth/login");
   };
 
   return (

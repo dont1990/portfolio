@@ -2,18 +2,8 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {
-  ThemeProvider,
-  ColorSchemeProvider,
-} from "@/app/components/theme-provider";
-import { ThemeTransition } from "@/app/components/theme-transition";
-import { ParallaxBackground } from "./components/parallax-background";
-import { ParallaxParticles } from "./components/parallax-particles";
-import { ScrollProgress } from "./components/scroll-progress";
-import { ColorSchemePicker } from "./components/color-scheme-picker";
-import { EnhancedThemeSettings } from "./components/enhanced-theme-settings";
-import { ScrollToTop } from "./components/scroll-to-top";
-import { Toaster } from "react-hot-toast";
+import MainProvider from "./providers/main-provider/mainProvider";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,35 +13,19 @@ export const metadata: Metadata = {
     "A personal portfolio showcasing the work and skills of Alex Johnson, a passionate frontend developer.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const lang = (await cookieStore).get("i18next")?.value || "en";
+  const dir = lang === "fa" ? "rtl" : "ltr";
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} dir={dir} suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ColorSchemeProvider>
-            <div className="min-h-screen bg-background">
-              <ParallaxBackground />
-              {/* <ParallaxParticles /> */}
-              <ThemeTransition />
-              {/* <ReadingTime /> */}
-              {children}
-              <ScrollToTop />
-              <EnhancedThemeSettings />
-              <ColorSchemePicker />
-              <Toaster position="top-center" reverseOrder={false} />
-            </div>
-            <ThemeTransition />
-          </ColorSchemeProvider>
-        </ThemeProvider>
+        <MainProvider>{children}</MainProvider>
       </body>
     </html>
   );

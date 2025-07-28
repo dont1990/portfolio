@@ -5,6 +5,7 @@ import { Button } from "@/app/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
@@ -80,6 +81,8 @@ export function ThemeToggleExpanded() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
+  const { t } = useTranslation("theme");
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -97,7 +100,7 @@ export function ThemeToggleExpanded() {
 
   return (
     <motion.div
-      className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-muted/50 border"
+      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/50 border"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
@@ -135,7 +138,7 @@ export function ThemeToggleExpanded() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {isDark ? "Dark" : "Light"}
+          {isDark ? t("dark") : t("light")}
         </motion.span>
       </button>
 
@@ -148,7 +151,15 @@ export function ThemeToggleExpanded() {
         <motion.div
           className="absolute top-0.5 w-4 h-4 bg-primary rounded-full shadow-sm"
           animate={{
-            x: isDark ? 20 : 2,
+            x:
+              typeof window !== "undefined" &&
+              document?.documentElement?.dir === "rtl"
+                ? isDark
+                  ? -2
+                  : -20
+                : isDark
+                ? 20
+                : 2,
           }}
           transition={{ type: "spring", stiffness: 500, damping: 30 }}
         />

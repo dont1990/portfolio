@@ -6,13 +6,16 @@ import { motion } from "framer-motion";
 import { ParallaxHero } from "@/app/components/parallax-hero";
 import Typewriter from "../../type-writer";
 import { HeroData } from "@/app/types/shared/hero/heroData";
-
+import { useTranslation } from "react-i18next";
+import i18n from "@/app/lib/language/i18n";
 
 interface HeroContentProps {
   hero: HeroData;
 }
 
 export function HeroContent({ hero }: HeroContentProps) {
+  const { t } = useTranslation("hero");
+
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -63,7 +66,9 @@ export function HeroContent({ hero }: HeroContentProps) {
             className="text-4xl md:text-6xl font-bold mb-4"
             variants={itemVariants}
           >
-            Hi, I'm <span className="text-primary">{hero.name}</span>
+            {t("greeting")}{" "}
+            <span className="text-primary mx-1">{hero.name}</span>
+            {i18n.language === "fa" ? "هستم" : ""}
           </motion.h1>
           <motion.div
             className="text-muted-foreground mb-8"
@@ -93,8 +98,8 @@ export function HeroContent({ hero }: HeroContentProps) {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button size="lg" className="w-full sm:w-auto">
-              <Mail className="mr-2 h-4 w-4" />
-              Get In Touch
+              <Mail className="ms-2 h-4 w-4" />
+              {t("contactBtn")}
             </Button>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -103,7 +108,7 @@ export function HeroContent({ hero }: HeroContentProps) {
               size="lg"
               className="w-full sm:w-auto bg-transparent"
             >
-              View My Work
+              {t("portfolioBtn")}
             </Button>
           </motion.div>
         </motion.div>

@@ -10,8 +10,8 @@ import {
 } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
-import { cn } from "@/app/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
+import { cn } from "@/app/lib/utils/cn/cn";
 
 const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
 

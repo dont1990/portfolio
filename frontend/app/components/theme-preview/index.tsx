@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
 import { motion } from "framer-motion";
-import { colorSchemes, type ColorScheme } from "@/app/lib/color-schemes";
+import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
 import { useColorScheme } from "@/app/components/theme-provider"; // Import useColorScheme
 
 interface ThemePreviewProps {

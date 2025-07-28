@@ -17,8 +17,8 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import clsx from "clsx";
 import { Button } from "../../ui/button";
-import { cn } from "@/app/lib/utils";
 import { AdminLogoutButton } from "../logout";
+import { cn } from "@/app/lib/utils/cn/cn";
 
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -75,7 +75,7 @@ export function AdminNavigation() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-4">
-            <h2 className="text-2xl font-bold mb-8">Admin Panel</h2>
+            <h2 className="text-xl font-bold mb-8 mt-0.5 ">Admin Panel</h2>
             <NavLinks />
           </SheetContent>
         </Sheet>
@@ -83,7 +83,7 @@ export function AdminNavigation() {
 
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:h-screen bg-muted border-r p-4 sticky top-0">
-        <h2 className="text-2xl font-bold mb-8">Admin Panel</h2>
+        <h2 className="text-xl font-bold mb-8">Admin Panel</h2>
         <NavLinks />
       </aside>
     </>

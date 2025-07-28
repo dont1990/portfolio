@@ -28,7 +28,7 @@ import {
   Shuffle,
 } from "lucide-react";
 import { useColorScheme } from "@/app/components/theme-provider";
-import { colorSchemes, type ColorScheme } from "@/app/lib/color-schemes";
+import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
 import { ThemePreview } from "@/app/components/theme-preview";
 
 export function EnhancedThemeSettings() {

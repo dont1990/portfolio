@@ -18,7 +18,6 @@ import HeroEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 
-
 export default function HeroEditor() {
   const { data, error, isLoading, mutate } = useSWR<HeroData>(
     "/hero",
@@ -27,6 +26,8 @@ export default function HeroEditor() {
 
   const [form, setForm] = useState<HeroData | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
 
   useKeyPressHandler({
     key: "Enter",
@@ -72,6 +73,26 @@ export default function HeroEditor() {
   const handleRolesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const roles = e.target.value.split(",").map((r) => r.trim());
     setForm((prev) => (prev ? { ...prev, roles } : null));
+  };
+
+  const handleResumeUpload = async () => {
+    if (!resumeFile) return;
+    const formData = new FormData();
+    formData.append("resume", resumeFile);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/hero/upload-resume`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (!res.ok) throw new Error("Failed to upload resume.");
+      toast.success("Resume uploaded.");
+    } catch (err) {
+      toast.error("Resume upload failed.");
+    }
   };
 
   const handleSave = () => {
@@ -130,29 +151,35 @@ export default function HeroEditor() {
           </div>
 
           <div className="pt-4 border-t">
-            <h4 className="text-lg font-medium mb-2">Social Links</h4>
+            <h4 className="text-lg font-medium mb-2">Resume</h4>
 
             <div className="space-y-2">
-              <Label>GitHub</Label>
               <Input
-                name="socials.github"
-                value={form.socials.github}
-                onChange={handleChange}
+                type="file"
+                accept=".pdf"
+                onChange={(e) => {
+                  if (e.target.files?.[0]) {
+                    setResumeFile(e.target.files[0]);
+                  }
+                }}
               />
 
-              <Label>LinkedIn</Label>
-              <Input
-                name="socials.linkedin"
-                value={form.socials.linkedin}
-                onChange={handleChange}
-              />
+              <div className="flex gap-2">
+                <Button onClick={handleResumeUpload} disabled={!resumeFile}>
+                  Upload Resume
+                </Button>
 
-              <Label>Email</Label>
-              <Input
-                name="socials.email"
-                value={form.socials.email}
-                onChange={handleChange}
-              />
+                <a
+                  href={`${process.env.NEXT_PUBLIC_API_URL}/hero/resume`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  <Button variant="outline" className="w-full sm:w-auto">
+                    Download Resume
+                  </Button>
+                </a>
+              </div>
             </div>
           </div>
 

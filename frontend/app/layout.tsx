@@ -18,12 +18,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const lang = (await cookieStore).get("i18next")?.value || "en";
-  const dir = lang === "fa" ? "rtl" : "ltr";
+  // const cookieStore = cookies();
+  // const lang = (await cookieStore).get("i18next")?.value || "en";
+  // const dir = lang === "fa" ? "rtl" : "ltr";
 
   return (
-    <html lang={lang} dir={dir} suppressHydrationWarning>
+    // <html lang={lang} dir={dir} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <MainProvider>{children}</MainProvider>
       </body>

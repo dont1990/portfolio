@@ -8,21 +8,27 @@ import {
   ThemeToggle,
   ThemeToggleExpanded,
 } from "@/app/components/theme-toggle";
-import LanguageToggle from "../language/language-toggle";
-import { useTranslation } from "react-i18next";
+// import LanguageToggle from "../language/language-toggle";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const { t } = useTranslation("navigation");
+  // const { t } = useTranslation("navigation");
+  // const navItems = [
+  //   { id: "home", label: t("home") },
+  //   { id: "about", label: t("about") },
+  //   { id: "skills", label: t("skills") },
+  //   { id: "projects", label: t("projects") },
+  //   { id: "contact", label: t("contact") },
+  // ];
 
   const navItems = [
-    { id: "home", label: t("home") },
-    { id: "about", label: t("about") },
-    { id: "skills", label: t("skills") },
-    { id: "projects", label: t("projects") },
-    { id: "contact", label: t("contact") },
+    { id: "home", label: "home" },
+    { id: "about", label: "about" },
+    { id: "skills", label: "skills" },
+    { id: "projects", label: "projects" },
+    { id: "contact", label: "contact" },
   ];
 
   const scrollTo = (id: string) => {
@@ -72,12 +78,12 @@ export function Navigation() {
             ))}
 
             <ThemeToggle />
-            <LanguageToggle />
+            {/* <LanguageToggle /> */}
           </div>
 
           {/* Mobile Hamburger */}
           <div className="md:hidden flex items-center gap-2">
-            <LanguageToggle />
+            {/* <LanguageToggle /> */}
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Button
                 variant="ghost"

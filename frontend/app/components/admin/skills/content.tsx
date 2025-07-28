@@ -13,7 +13,7 @@ import {
 import { updateSkillsData } from "./actions/updateSkills";
 import SkillsEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
-import { fetcher } from "@/app/lib/utils/cn/cn/swr/fetcher";
+import { fetcher } from "@/app/lib/utils/swr/fetcher";
 import { Skill, SkillCategory } from "@/app/types/shared/skill/skill";
 
 export default function SkillsEditor() {

@@ -15,7 +15,7 @@ import ProjectsEditorSkeleton from "./skeleton";
 import { Textarea } from "@/app/components/ui/textarea";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import toast from "react-hot-toast";
-import { fetcher } from "@/app/lib/utils/cn/cn/swr/fetcher";
+import { fetcher } from "@/app/lib/utils/swr/fetcher";
 import { Project } from "@/app/types/shared/project/project";
 
 export default function ProjectsEditor() {

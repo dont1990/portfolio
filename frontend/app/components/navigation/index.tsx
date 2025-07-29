@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
@@ -8,11 +8,21 @@ import {
   ThemeToggle,
   ThemeToggleExpanded,
 } from "@/app/components/theme-toggle";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 // import LanguageToggle from "../language/language-toggle";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useClickOutside(
+    [mobileMenuRef, toggleButtonRef],
+    () => setIsOpen(false),
+    isOpen
+  );
 
   // const { t } = useTranslation("navigation");
   // const navItems = [
@@ -86,6 +96,7 @@ export function Navigation() {
             {/* <LanguageToggle /> */}
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Button
+                ref={toggleButtonRef}
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(!isOpen)}
@@ -122,6 +133,7 @@ export function Navigation() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              ref={mobileMenuRef}
               className="md:hidden"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}

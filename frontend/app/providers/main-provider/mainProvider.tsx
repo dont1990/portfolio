@@ -12,7 +12,7 @@ import { EnhancedThemeSettings } from "@/app/components/enhanced-theme-settings"
 import { ScrollToTop } from "@/app/components/scroll-to-top";
 import { Toaster } from "react-hot-toast";
 import { I18nextProvider } from "react-i18next";
-import i18n from "@/app/lib/language/i18n";
+// import i18n from "@/app/lib/language/i18n";
 
 type Props = {
   children: React.ReactNode;
@@ -32,7 +32,10 @@ const MainProvider = ({ children }: Props) => {
           {/* <ParallaxParticles /> */}
           <ThemeTransition />
           {/* <ReadingTime /> */}
-          <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+          {/* <I18nextProvider i18n={i18n}>
+            {children}
+            </I18nextProvider> */}
+          {children}
           <ScrollToTop />
           <EnhancedThemeSettings />
           <ColorSchemePicker />

@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Palette, Check, Sparkles } from "lucide-react";
 import { useColorScheme } from "@/app/components/theme-provider";
 import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 export function ColorSchemePicker() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,28 +23,7 @@ export function ColorSchemePicker() {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  useClickOutside([menuRef, buttonRef], () => setIsOpen(false), isOpen);
 
   const handleSchemeChange = (scheme: ColorScheme) => {
     setColorScheme(scheme);

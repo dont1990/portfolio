@@ -81,7 +81,7 @@ export function ThemeToggleExpanded() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const { t } = useTranslation("theme");
+  // const { t } = useTranslation("theme");
 
   useEffect(() => {
     setMounted(true);
@@ -138,7 +138,8 @@ export function ThemeToggleExpanded() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {isDark ? t("dark") : t("light")}
+          {/* {isDark ? t("dark") : t("light")} */}
+          {isDark ? "dark" : "light"}
         </motion.span>
       </button>
 

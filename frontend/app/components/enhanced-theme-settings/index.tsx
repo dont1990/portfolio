@@ -30,6 +30,7 @@ import {
 import { useColorScheme } from "@/app/components/theme-provider";
 import { colorSchemes, type ColorScheme } from "@/app/lib/theme/color-schemes";
 import { ThemePreview } from "@/app/components/theme-preview";
+import { useClickOutside } from "@/app/hooks/useClickOutside";
 
 export function EnhancedThemeSettings() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,28 +40,7 @@ export function EnhancedThemeSettings() {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    }
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  useClickOutside([menuRef, buttonRef], () => setIsOpen(false), isOpen);
 
   const themeOptions = [
     {

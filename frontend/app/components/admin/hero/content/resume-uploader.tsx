@@ -19,7 +19,7 @@ export default function ResumeUploader({
   handleResumeUpload,
   uploadProgress,
 }: ResumeUploaderProps) {
-    console.log(uploadProgress)
+  console.log(uploadProgress);
   return (
     <div className="pt-8 border-t space-y-6">
       <h4 className="text-lg font-medium mb-2">Resume (English & Persian)</h4>

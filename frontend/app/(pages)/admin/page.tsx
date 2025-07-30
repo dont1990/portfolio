@@ -1,8 +1,12 @@
-export default function AdminDashboard() {
+import AdminDashboard from '@/app/components/admin/home'
+import React from 'react'
+
+
+const AdminHomePage = () => {
   return (
-    <section className="section-container">
-      <h1 className="text-2xl font-semibold mb-4">Admin Dashboard</h1>
-      <p>Welcome to the admin panel!</p>
-    </section>
-  );
+    // <AdminDashboard/>
+    <div></div>
+  )
 }
+
+export default AdminHomePage

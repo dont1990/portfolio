@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
+import useSWR from "swr";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -14,15 +15,24 @@ import { toast } from "react-hot-toast";
 import * as actions from "./actions/contactInfoActions";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
+import ContactInfoSkeleton from "./skeleton";
+import { fetcher } from "@/app/lib/utils/swr/fetcher";
+
+export default function ContactEditor() {
+  const { data, error, isLoading, mutate } = useSWR<ContactInfo>(
+  `${process.env.NEXT_PUBLIC_API_URL}/contact-info`,
+  fetcher // <- your generic fetcher that accepts a URL
+);
 
 
-type Props = {
-  contactInfoData: ContactInfo;
-};
-
-export default function ContactEditor({ contactInfoData }: Props) {
-  const [data, setData] = useState<ContactInfo>(contactInfoData);
+  const [formData, setFormData] = useState<ContactInfo | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    if (data && !formData) {
+      setFormData(data);
+    }
+  }, [data, formData]);
 
   useKeyPressHandler({
     key: "Enter",
@@ -35,7 +45,9 @@ export default function ContactEditor({ contactInfoData }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setData((prev) => {
+    if (!formData) return;
+
+    setFormData((prev) => {
       if (!prev) return prev;
 
       if (name.includes(".")) {
@@ -58,15 +70,25 @@ export default function ContactEditor({ contactInfoData }: Props) {
   };
 
   const handleSave = () => {
+    if (!formData) return;
     startTransition(async () => {
       try {
-        await actions.updateContactInfo(data);
+        await actions.updateContactInfo(formData);
         toast.success("Contact info updated.");
+        mutate(); // revalidate
       } catch (err) {
         toast.error("Failed to update contact info.");
       }
     });
   };
+
+  if (isLoading || !formData) {
+    return <ContactInfoSkeleton />;
+  }
+
+  if (error) {
+    return <p className="text-red-500">Failed to load contact info</p>;
+  }
 
   return (
     <section className="section-container">
@@ -79,7 +101,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
             <Label htmlFor="email">Email</Label>
             <Input
               name="email"
-              value={data.email}
+              value={formData.email}
               onChange={handleChange}
               placeholder="Email"
             />
@@ -89,7 +111,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
             <Label htmlFor="phone">Phone</Label>
             <Input
               name="phone"
-              value={data.phone}
+              value={formData.phone}
               onChange={handleChange}
               placeholder="Phone"
             />
@@ -99,7 +121,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
             <Label htmlFor="location">Location</Label>
             <Input
               name="location"
-              value={data.location}
+              value={formData.location}
               onChange={handleChange}
               placeholder="Location"
             />
@@ -112,7 +134,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
               <Label htmlFor="github">GitHub</Label>
               <Input
                 name="social.github"
-                value={data.social.github}
+                value={formData.social.github}
                 onChange={handleChange}
                 placeholder="GitHub URL"
               />
@@ -120,7 +142,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
               <Label htmlFor="linkedin">LinkedIn</Label>
               <Input
                 name="social.linkedin"
-                value={data.social.linkedin}
+                value={formData.social.linkedin}
                 onChange={handleChange}
                 placeholder="LinkedIn URL"
               />
@@ -128,7 +150,7 @@ export default function ContactEditor({ contactInfoData }: Props) {
               <Label htmlFor="twitter">Twitter</Label>
               <Input
                 name="social.twitter"
-                value={data.social.twitter}
+                value={formData.social.twitter}
                 onChange={handleChange}
                 placeholder="Twitter URL"
               />

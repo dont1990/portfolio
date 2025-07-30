@@ -7,7 +7,7 @@ type Props = {
 
 const AdminLayout = ({ children }: Props) => {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen">
       <AdminNavigation />
       <main className="flex-1 overflow-y-auto">{children}</main>
     </div>

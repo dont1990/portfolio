@@ -63,7 +63,7 @@ export function AdminNavigation() {
       {/* Mobile top nav with Sheet trigger */}
       <div
         className={cn(
-          "lg:hidden flex items-center justify-between lg:p-4 border-b sticky top-0 z-50",
+          "lg:hidden flex items-center justify-between lg:p-4 border-b sticky top-0 z-50 h-fit",
           open && "bg-background"
         )}
       >

@@ -8,7 +8,7 @@ import experiencesRouter from "./routes/experiences.route";
 import contactRouter from "./routes/contact.route";
 
 // admin
-import contactInfoRoutes from "./routes/admin/contactInfo.route";
+import contactInfoRoutes from "./routes/contactInfo.route";
 import { basicAuth } from "./utils/basicAuth";
 
 const app = express();
@@ -24,10 +24,10 @@ app.use("/api/projects", projectsRouter);
 app.use("/api/experiences", experiencesRouter);
 app.use("/api/contact", contactRouter);
 
+app.use("/api/contact-info", contactInfoRoutes);
+
 // admin
 app.use("/api/admin", basicAuth);
-
-app.use("/api/admin/contact-info", contactInfoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

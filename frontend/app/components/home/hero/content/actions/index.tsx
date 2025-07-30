@@ -1,6 +1,15 @@
-import { Button } from "@/app/components/ui/button";
-import { Mail, Download } from "lucide-react";
+"use client";
+
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Download, Mail } from "lucide-react";
+import { Button } from "@/app/components/ui/button";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/app/components/ui/popover";
+import { DownloadResumeButton } from "./download-resume";
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -18,24 +27,18 @@ export function HeroActions() {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
     <motion.div
       className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
       variants={itemVariants}
     >
+      {/* Resume Popover */}
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-        <a
-          href={`${process.env.NEXT_PUBLIC_API_URL}/hero/resume`}
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button size="lg" className="w-full sm:w-auto">
-            <Download className="mr-2 h-4 w-4" />
-            Download Resume
-          </Button>
-        </a>
+        <DownloadResumeButton />
       </motion.div>
+
+      {/* Get in Touch */}
       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           onClick={() => scrollTo("contact")}

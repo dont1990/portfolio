@@ -12,17 +12,40 @@ router.put("/", updateHero);
 
 // Upload resume
 router.post("/upload-resume", upload.single("resume"), (req, res) => {
-  res.json({ message: "Resume uploaded successfully." });
+  const lang = req.body.lang;
+
+  if (!["en", "fa"].includes(lang)) {
+    return res.status(400).json({ message: "Invalid language code." });
+  }
+
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded." });
+  }
+
+  const uploadedPath = path.join(__dirname, `../uploads/resume-${lang}.pdf`);
+  fs.renameSync(req.file.path, uploadedPath);
+
+  res.json({ message: `Resume (${lang}) uploaded successfully.` });
 });
+
+
 
 // Download resume
 router.get("/resume", (req, res) => {
-  const resumePath = path.join(__dirname, "../uploads/resume.pdf");
+  const lang = req.query.lang;
+
+  if (typeof lang !== "string" || !["en", "fa"].includes(lang)) {
+    return res.status(400).send("Invalid language.");
+  }
+
+  const resumePath = path.join(__dirname, `../uploads/resume-${lang}.pdf`);
+
   if (fs.existsSync(resumePath)) {
     res.download(resumePath);
   } else {
     res.status(404).send("Resume not found.");
   }
 });
+
 
 export default router;

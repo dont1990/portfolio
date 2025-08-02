@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
 
-const dataFilePath = path.join(__dirname, "../data/contactSubmissions.json");
+const dataFilePath = path.join(__dirname, "../data/submissions.json");
 
 // Helper: read submissions
 const readSubmissions = () => {
@@ -55,3 +55,21 @@ export const saveContactSubmission = (req: Request, res: Response) => {
   }
 };
 
+export const deleteContactSubmission = (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const submissions = readSubmissions();
+
+    const index = submissions.findIndex((s) => String(s.id) === id);
+    if (index === -1) {
+      return res.status(404).json({ message: "Submission not found." });
+    }
+
+    const deleted = submissions.splice(index, 1);
+    writeSubmissions(submissions);
+
+    res.status(200).json({ message: "Submission deleted.", deleted: deleted[0] });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete submission." });
+  }
+};

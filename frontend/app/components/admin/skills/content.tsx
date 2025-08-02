@@ -15,6 +15,7 @@ import SkillsEditorSkeleton from "./skeleton";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { fetcher } from "@/app/lib/utils/swr/fetcher";
 import { Skill, SkillCategory } from "@/app/types/shared/skill/skill";
+import toast from "react-hot-toast";
 
 export default function SkillsEditor() {
   const { data, error, isLoading, mutate } = useSWR<SkillCategory[]>(
@@ -89,9 +90,13 @@ export default function SkillsEditor() {
 
   const handleSave = async () => {
     if (!skillsData) return;
-    await updateSkillsData(skillsData);
-    mutate(); // refetch from API
-    alert("Skills updated successfully!");
+    try {
+      await updateSkillsData(skillsData);
+      mutate();
+      toast.success("Projects info updated.");
+    } catch (error) {
+      toast.error("Failed to update projects info.");
+    }
   };
 
   if (isLoading || !skillsData) return <SkillsEditorSkeleton />;

@@ -44,7 +44,7 @@ export default function HeroEditor() {
 
   return (
     <section className="section-container">
-      <Card className="max-w-xl mx-auto">
+      <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <CardTitle>Edit Hero Info</CardTitle>
         </CardHeader>

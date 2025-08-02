@@ -1,12 +1,13 @@
-import AdminDashboard from '@/app/components/admin/home'
-import React from 'react'
+import AdminDashboard from "@/app/components/admin/home";
+import AdminDashboardSkeleton from "@/app/components/admin/home/skeleton";
+import React, { Suspense } from "react";
 
-
-const AdminHomePage = () => {
+const AdminDashboardPage = () => {
   return (
-    // <AdminDashboard/>
-    <div></div>
-  )
-}
+    <Suspense fallback={<AdminDashboardSkeleton />}>
+      <AdminDashboard />
+    </Suspense>
+  );
+};
 
-export default AdminHomePage
+export default AdminDashboardPage;

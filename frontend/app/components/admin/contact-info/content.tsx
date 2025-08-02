@@ -21,9 +21,8 @@ import { fetcher } from "@/app/lib/utils/swr/fetcher";
 export default function ContactEditor() {
   const { data, error, isLoading, mutate } = useSWR<ContactInfo>(
   `${process.env.NEXT_PUBLIC_API_URL}/contact-info`,
-  fetcher // <- your generic fetcher that accepts a URL
+  fetcher
 );
-
 
   const [formData, setFormData] = useState<ContactInfo | null>(null);
   const [isPending, startTransition] = useTransition();
@@ -92,7 +91,7 @@ export default function ContactEditor() {
 
   return (
     <section className="section-container">
-      <Card className="max-w-xl mx-auto">
+      <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <CardTitle>Edit Contact Information</CardTitle>
         </CardHeader>

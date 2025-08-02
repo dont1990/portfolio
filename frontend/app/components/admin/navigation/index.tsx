@@ -22,7 +22,7 @@ import { cn } from "@/app/lib/utils/cn/cn";
 
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/submission", label: "Submission", icon: FileText },
+  { href: "/admin/submissions", label: "Submission", icon: FileText },
   { href: "/admin/contact-info", label: "Contact Info", icon: Mail },
   { href: "/admin/hero", label: "Hero", icon: User },
   { href: "/admin/about", label: "About", icon: Info },

@@ -121,7 +121,7 @@ export default function AboutEditor() {
 
   return (
     <section className="section-container">
-      <Card className="max-w-3xl mx-auto space-y-6">
+      <Card className="mx-auto space-y-6">
         <CardHeader>
           <CardTitle>Edit About Info</CardTitle>
         </CardHeader>

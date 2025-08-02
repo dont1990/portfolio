@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import type { ThemeProviderProps } from "next-themes"
 
@@ -9,7 +9,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 }
 
 // Color scheme context
-const ColorSchemeContext = React.createContext<{
+const ColorSchemeContext = createContext<{
   colorScheme: string
   setColorScheme: (scheme: string) => void
 }>({
@@ -18,16 +18,16 @@ const ColorSchemeContext = React.createContext<{
 })
 
 export function ColorSchemeProvider({ children }: { children: React.ReactNode }) {
-  const [colorScheme, setColorScheme] = React.useState("blue")
+  const [colorScheme, setColorScheme] = useState("blue")
 
-  React.useEffect(() => {
+  useEffect(() => {
     const stored = localStorage.getItem("color-scheme")
     if (stored) {
       setColorScheme(stored)
     }
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("color-scheme", colorScheme)
     document.documentElement.setAttribute("data-color-scheme", colorScheme)
   }, [colorScheme])
@@ -36,7 +36,7 @@ export function ColorSchemeProvider({ children }: { children: React.ReactNode })
 }
 
 export const useColorScheme = () => {
-  const context = React.useContext(ColorSchemeContext)
+  const context = useContext(ColorSchemeContext)
   if (!context) {
     throw new Error("useColorScheme must be used within a ColorSchemeProvider")
   }
